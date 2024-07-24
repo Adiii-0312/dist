@@ -841,6 +841,9 @@ footer span a {
 footer span a:hover {
   text-decoration: underline;
 }
+.media1{
+  margin-left: 50%;
+}
 
 /* --x--------------------------- Footer ---------------------------x-- */
 
@@ -866,6 +869,9 @@ footer span a:hover {
   .social-menu ul li a {
     left: 114px;
   }
+  .media1{
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 947px) {
@@ -886,6 +892,9 @@ footer span a:hover {
     text-align: center;
     padding-top: 80px;
     transition: all 0.3s ease;
+  }
+  .media1{
+    margin-left: 0;
   }
   .navbar .menu.active {
     left: 0;
@@ -949,11 +958,17 @@ footer span a:hover {
   .services .serv-content .card {
     width: 100%;
   }
+  .media1{
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 500px) {
   .home .home-content .text-2 {
     font-size: 50px;
+  }
+  .media1{
+    margin-left: 0;
   }
   .home .home-content .text-3 {
     font-size: 27px;
