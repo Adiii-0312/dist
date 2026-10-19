@@ -1,78 +1,21 @@
-$(document).ready(function () {
-  $(window).scroll(function () {
-    // ------------------------------ sticky navbar on scroll script ------------------------------ //
-    if (this.scrollY > 20) {
-      $(".navbar").addClass("sticky");
-    } else {
-      $(".navbar").removeClass("sticky");
-    }
+const links = document.querySelectorAll(".menu a");
+const sections = [...links]
+  .map((link) => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
 
-    // ------------------------------ scroll-up button show/hide script ------------------------------ //
-    if (this.scrollY > 500) {
-      $(".scroll-up-btn").addClass("show");
-    } else {
-      $(".scroll-up-btn").removeClass("show");
-    }
+const markActive = () => {
+  const line = window.scrollY + 140;
+  let current = sections[0];
+  sections.forEach((section) => {
+    if (section.offsetTop <= line) current = section;
   });
-
-  // ------------------------------ slide-up script ------------------------------ //
-
-  $(".scroll-up-btn").click(function () {
-    $("html").animate({ scrollTop: 0 });
-    // ------------------------------ removing smooth scroll on slide-up button click ------------------------------ //
-    $("html").css("scrollBehavior", "auto");
+  links.forEach((link) => {
+    link.classList.toggle("active", link.getAttribute("href") === `#${current.id}`);
   });
+};
 
-  $(".navbar .menu li a").click(function () {
-    // ------------------------------ Smooth scroll on Menu Items click ------------------------------ //
+markActive();
+window.addEventListener("scroll", markActive, { passive: true });
 
-    $("html").css("scrollBehavior", "smooth");
-  });
-
-  // ------------------------------ Toggle Navbar ------------------------------ //
-
-  $(".menu-btn").click(function () {
-    $(".navbar .menu").toggleClass("active");
-    $(".menu-btn i").toggleClass("active");
-  });
-
-  // ------------------------------ Typing Text Animation ------------------------------ //
-
-  var typed = new Typed(".typing", {
-    strings: ["Frontend Developer", "UI/UX Designer"],
-    typeSpeed: 100,
-    backSpeed: 60,
-    loop: true
-  });
-
-  var typed = new Typed(".typing-2", {
-    strings: ["Frontend Developer", "UI/UX Designer"],
-    typeSpeed: 100,
-    backSpeed: 60,
-    loop: true
-  });
-
-  // ------------------------------ Owl Carousel ------------------------------ //
-
-  $(".carousel").owlCarousel({
-    margin: 20,
-    loop: true,
-    autoplay: true,
-    autoplayTimeOut: 2000,
-    autoplayHoverPause: true,
-    responsive: {
-      0: {
-        items: 1,
-        nav: false
-      },
-      600: {
-        items: 2,
-        nav: false
-      },
-      1000: {
-        items: 3,
-        nav: false
-      }
-    }
-  });
-});
+const year = document.querySelector("#year");
+if (year) year.textContent = String(new Date().getFullYear());
